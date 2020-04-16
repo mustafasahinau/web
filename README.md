@@ -1,2 +1,2 @@
 # web
-kayndak dersi web editör seyyyidine muhammet
+kayndak dersi web editör seyyyidine muhammet dawd 
