@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="tr-TR">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Mustafa Şahin</title>
+</head>
+
+<body>
+    <script type="text/javascript" language="javascript">
+    
+   /* 
+    Factorial digit sum
+   n! means n × (n − 1) × ... × 3 × 2 × 1
+
+For example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800,
+and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
+
+Find the sum of the digits in the number 100!
+*/
+
+//İlk olarak 100 faktöriyelin ne kadar olduğu hesaplanır.
+    var girilensayi = 100; // Değişken oluşturulur deger içine depolanır.
+    var faktoriyelbaslangici = BigInt(1); /* Toplam sayının depolanacağı değişken oluşturulur ve javascript,
+uzun basamaklı numaraları kendi sitiliyle yazmaması için BigInt metodu (Big integer) kullanılır.*/
+
+for ( deger = 1; deger <= girilensayi; deger++) { // Döngüye sokulup hesaplanır.
+	faktoriyelbaslangici = BigInt(faktoriyelbaslangici) * BigInt(deger); 
+}
+
+/* Herhangibir BigInt tanımlı değişken numberlerin son hanesine string değerli n ifadesini koyar.
+   Buna göre yapılacak işlem, 
+   Bulunan değer ilk önce stringe dönüştürülür sonra split metodu ile birimlere ayrılır.
+   Daha sonra değerin içindeki tüm veriler birim birim 
+   parseInt kullanılarak number veri türüne dönüştürülüp reduce metodu ile toplanır.*/ 
+
+console.log(faktoriyelbaslangici); // BigInt şeklinde yazılan veri örneğinin consola yazılımı.
+console.log(faktoriyelbaslangici.toString().split('').reduce((a,b) => parseInt(a) + parseInt(b)));//sonuç
+
+    </script>
+</body>
+
+</html>

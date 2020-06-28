@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="tr-TR">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Mustafa Şahin</title>
+</head>
+
+<body>
+  <script type="text/javascript" language="javascript">
+
+ /*
+   Digit fifth powers
+
+ Surprisingly there are only three numbers that can be written as the sum of fourth powers of their digits:
+
+1634 = 1^4 + 6^4 + 3^4 + 4^4
+8208 = 8^4 + 2^4 + 0^4 + 8^4
+9474 = 9^4 + 4^4 + 7^4 + 4^4
+As 1 = 1^4 is not a sum it is not included.
+
+The sum of these numbers is 1634 + 8208 + 9474 = 19316.
+Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
+
+Yazılabilecek 5. kuvvetli tüm sayıların toplamları istendiği için üst sınır sayısı;
+9'un 5. kuvveti 9^5 = 59049
+5 basamaklı olacağından 
+9^5+9^5+9^5+9^5+9^5 = 295245 olarak belirlenir.
+*/
+
+var DIZI = []; // 1- İlk olarak boş dizi oluşturulur.
+for (var i = 0; i < 10; i++) // 10 kadar olan sayıların 5. kuvveti hesaplanıp her sonuç ayrı 
+    DIZI[i] = Math.pow(i, 5); // düzenli indis değerli bir eleman olarak eklenir.
+
+function powSum(n) { // 4- Gönderilen (i) parametresindeki değer (n) parametresine yeni değer olarak gelir.
+  var toplam = 0; 
+  while (n > 0) { // (n) 0'dan büyük olmak üzere döngü oluşturulur.
+    toplam += DIZI[n % 10]; //Bölümden kalan sayı index değerini verir. index değerine depolanan veri toplam'a 
+    n = n / 10 | 0; // Diğer dizilerinde kontrol edilebilmesi için döngüyü devam ettirir.              eklenir
+  }
+  return toplam; // Şart sağlanırsa (n) aracılığıyla (i) parametresine değer gönderir.
+}
+
+function cozum() { // 3- Fonksiyon oluşturulur.
+    var geneltoplam = 0; //Değişken oluşturulup değeri 0 verilir.
+    for (var i = 2; i <= 295245; i++) { // (i)'yi üst sınır sayısına ulaşana kadar döngüye sokup denetler.
+      if (i === powSum(i)) { //Denetlenen (i)'nin şartları kontrol için powSum fonksiyonuna parametre yollar.
+            geneltoplam += i; // powSum şartı sağlanırsa gelen parametre değeri geneltoplam değişkenine
+      }                                                                                   // depolanır. 
+    }
+    return geneltoplam; // Depolanan veri geneltoplam değişkenine döner ve diğer verileride toplayıp 
+}                                             //biriktirmek üzere bekler. Döngü tamamlanınca consola yazıdır.
+
+console.log(cozum()); // 2- ikinci olarak sonuç console.log'a yazmak üzere fonsiyon çağrılır.
+
+  </script>
+</body>

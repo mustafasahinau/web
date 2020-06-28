@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="tr-TR">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Mustafa Şahin</title>
+</head>
+
+<body>
+    <script type="text/javascript" language="javascript">
+
+    
+        /*
+        Summation of primes
+        Problem 10
+        
+        The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+        
+        Find the sum of all the primes below two million.
+        */
+
+//Fonksiyon oluşturulur.
+function gonderilensayi(n) { // 2- (n) degerine gelen parametre 2000000.
+    var toplananasalsayilar = 0; // 3-Hesaplanan asal sayıları toplayan degisken oluşturulur.
+    for (var deger = 2; deger < n; deger++) { // 3- Döngüye sokulup hesaplanır
+        if (asalsayikontrol(deger)) { //4- Şartları kontrol etmesi için fonksiyona parametre gönderilir.
+            toplananasalsayilar += deger; // 6- Şartları saglanan sayıları toplayarak değişkende depola.
+        }
+    }
+    return toplananasalsayilar; // 7- Döngü sonlandığında depolanan degeri fonksiyona döndür.
+}
+
+//Üstteki fonksiyonda hesaplanan "deger" alttaki fonksiyonun parametresine(n) gelir.
+function asalsayikontrol(n) { // 5 - Şartların denetimi bu fonksiyonda yapılır.
+    if (n == 2 || n == 3) { // (n) 2 yada 3 ten küçükmü?
+        return true; // Küçükse true dön.
+    }
+
+    else if (n % 2 == 0 || n % 3 == 0) { // 2 yada 3 e tam bölünürmü?
+        return false;  // Bölünürse false dön.
+    }
+
+    for (var sayi2 = 5; sayi2 * sayi2 <= n; sayi2 += 2) { 
+        if (n % sayi2 == 0){ // Döngüye sokulur 5'in katları ise false dön.
+            return false;
+        }
+    }
+    
+    return true; //Şartlar saglanmazsa true dön.
+}
+// 1-Hesaplanacak sayı girilir, "gonderilensayi" fonksiyonuna parametre  gönderilir.
+console.log(gonderilensayi(2000000));
+
+    </script>
+</body>
+
+</html>
