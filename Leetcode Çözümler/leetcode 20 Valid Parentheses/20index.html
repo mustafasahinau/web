@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Demo</title>
+</head>
+<body>
+<script>
+/*
+     20. Valid Parentheses
+
+     Given a string containing just the characters '(', ')', '{', '}', '[' and ']',
+      determine if the input string is valid.
+
+An input string is valid if:
+*Open brackets must be closed by the same type of brackets.
+*Open brackets must be closed in the correct order.
+Note: That an empty string is also considered valid.
+Example:
+Input: "()"
+Output: true
+*/
+
+const brackets = {  // Şeklinde 3 elemanlı dizi oluşturulur
+  '(': ')',
+  '{': '}',
+  '[': ']',
+};
+function isValid(str) { 
+  if (str === '') { // Notta belirtilen eğer boşsa geçerli kıl
+    return true;
+  }
+  const strArr = str.split(''); // split metodu ile fonksiyon değerleri birimlere ayrılır strArr'a depolanır
+  const pending = [strArr[0]]; // strArr diziye dönüştürülür pending(bekleyen)'e 0 index değeri ile depolanır 
+  const openArr = ['(', '{', '[']; // Ayraç açımı
+  let open = false;
+  for (let i = 1; i < strArr.length; i += 1) {//ilk kontrol eğer ayraç açılıyorsa
+    if (openArr.indexOf(strArr[i]) !== -1) {
+      //Eğer evet ise pending dizisine ekle 
+      pending.push(strArr[i]);
+      open = true;
+      //Eğer açılış ayracı değilse, kapanış ayracıdır pendinge son öğresine ekle
+    } else if (brackets[pending[pending.length - 1]] === strArr[i]) {
+      //evet ise pendingteki son öğeyi kaldır ve pending boş olursa open false olarak ayarla
+      pending.pop();
+      if (pending.length === 0) {
+        open = false;
+      }
+      //else if, ayracı başlatmaz veya kapatmazsa pending false dön
+    } else {
+      return false;
+    }
+  }
+  // open hala true yada str nin içinde ayraç açıksa false dön
+  if (open || str.length === 1) {
+    return false;
+  }
+  return true;
+}
+</script>
+</body>
+</html>
+

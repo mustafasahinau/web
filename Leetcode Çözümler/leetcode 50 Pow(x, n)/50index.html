@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="tr-TR">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <title>Mustafa Şahin</title>
+</head>
+
+<body>
+  <script type="text/javascript" language="javascript">
+/*
+implement pow(x,n), which calculates x raised to the power n(x^n).
+
+Example 1:
+
+Input: 2.00000, 10
+Output: 1024.00000
+*/
+
+  function myPow(x, n) { // İlk parametre sayı ikinci parametre sayının üssü olarak hesaplanacaktır.
+    if (n == 0) {  // Herhangi bir sayının kuvveti 0 ise sonuç 1 olur.
+      return 1;
+    }
+    if (n == 1) { // Herhangi bir sayının kuvveti 1 ise sayı yine kendisidir değer değişmez.
+      return x;
+    }
+    if (n < 0) { // Eğer kuvvet - girilirse negatife eşitle.
+      x = 1/x;
+      n = -n;
+    }
+
+    var yarisi = myPow(x, Math.floor(n / 2)); // Kuvvetin yarısı alınır Math.floor metodu ile tam sayı yapılır.
+    var kalan = myPow(x, n % 2); // Kuvvetin kalanı hesaplanır.
+    return kalan * yarisi * yarisi; //Çarpılarak Sonuca ulaşılır.
+  }
+  
+  </script>
+</body>
+
+</html>
