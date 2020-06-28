@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        The set [1,2,3,...,n] contains a total of n! unique permutations.
+
+By listing and labeling all of the permutations in order, we get the following sequence for n = 3:
+
+"123"
+"132"
+"213"
+"231"
+"312"
+"321"
+Given n and k, return the kth permutation sequence.
+
+Note:
+
+Given n will be between 1 and 9 inclusive.
+Given k will be between 1 and n! inclusive.
+Example 1:
+
+Input: n = 3, k = 3
+Output: "213"
+*/
+
+/**
+ * @param {number} n
+ * @param {number} k
+ * @return {string}
+ */
+ var getPermutation = function(n, k) {  //input girdileri (default)
+    function permutasyonBul(arr,curr) { //permutasyonu bulmak için fonksiyon oluşturulur
+        if (curr.length == n) {  //  currently dizisinin uzunluğu girilen inputa eşitse if şartları ile counter bir artırılır 
+            counter++
+            if (counter == k) { //k inputuna eşit olana kadar artırılır 
+                res = curr.join('')// şartları sağlanan curr'un içeriği join ile strin değere dönüştürülerek res değişkenine atanır
+                return // ve değer dışarı döndürülür.
+            }
+        }
+        for(let i=0; i < arr.length; i++){ //benzer işlemler arr içinde yapılır arrayda kaç eleman olduğu bulunur
+            curr.push(arr[i])// her eleman curr arrayına pushlanır orda biriktirilir.
+            permutasyonBul(arr.filter(a=>{return a!=arr[i]}),curr) //fonksiyon kendi içinde çağrılarak filtreleme bitene kadar - 
+            curr.pop() //kendini tekrar eder ve son eleman olarak eklenir. Filtrelenen değerler curr arrayından poplanır.
+        }
+    }
+    let arr =[] ,counter = 0, res='' //2. olarak "arr" dizi olarak başlatılır "res" string olarak başlatılır ve "counter" number olarak
+    for(let i=1 ; i<=n;i++)arr.push(i) 
+    permutasyonBul(arr,[]) //1 - ilk olarak fonksiyon çağrılır 2 parametre verilir ilki array ikincisi currently
+    return res // son olarak değer döndürülür.
+};
+
+    </script>
+</body>
+</html>
