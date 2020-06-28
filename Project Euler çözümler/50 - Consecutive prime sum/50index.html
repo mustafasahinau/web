@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//         The prime 41, can be written as the sum of six consecutive primes:
+
+// 41 = 2 + 3 + 5 + 7 + 11 + 13
+// This is the longest sum of consecutive primes that adds to a prime below one-hundred.
+
+// The longest sum of consecutive primes below one-thousand that adds to a prime, contains 21 terms, and is equal to 953.
+
+// Which prime, below one-million, can be written as the sum of the most consecutive primes?
+
+
+/*
+Asal sayıların bir listesi ve belirli bir miktarın asal olup olmadığını kontrol etmek. 
+Her iki isteğide elekten geçirerek hesaplayabiliriz:*/
+
+const limit = 1000000 //1 milyon üzerinden hesaplanacak
+const notPrime = new Uint8Array(limit); // obje oluşturulur parametre olarak 1 milyon gönderilir asal olmayan sayılar
+const primes = []; // primes adında array baslatılır
+
+notPrime[0] = notPrime[1] = 1; // objenin 0. index değeri 1.index değerine eşitlenir yani 1 sayı ilk sayıdır.
+
+for (let i = 2; i < limit; i++) { // 2 den başlayarak milyona doğru döngü başlar kendine ulaşana kadar
+  if (notPrime[i] === 0) { 
+    primes.push(i); // primes arrayının içine toplanmak üzere pushlanır.
+    for (let j = i * i; j < limit; j+= i) { 
+      notPrime[j] = 1; // 
+    }
+  }
+}
+
+/*
+Artık her asal sayıyı toplayabiliyoruz. 1 milyonun sınıra ulaşırak döngüyü sonlandırabiliriz.
+ Bir asal sayının kendisini oluşturan en uzun yeni asal sayılar dizisini bulursak, istatistiklerimizi güncelleriz;
+ */
+let maxSum = 0;
+let maxRun = -1;
+for (let i = 0; i < primes.length; i++) {
+
+  let sum = 0;
+  for (let j = i; j < primes.length; j++) {
+    sum+= primes[j];
+    if (sum > limit)
+      break;
+    if (!notPrime[sum] && sum > maxSum && j - i > maxRun) {
+      maxRun = j - i;
+      maxSum = sum;
+    }
+  }
+}
+console.log(maxRun); // 542 adet asal sayı toplanarak
+console.log(maxSum); // 997651 sayısı bulunur.
+
+    </script>
+</body>
+</html>
